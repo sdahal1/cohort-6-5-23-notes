@@ -96,3 +96,22 @@ console.log(result)
 
 // Study guide time!
 
+
+
+const products = [
+  {
+    name: "macbook"
+  },
+  {
+    name: "iphone"
+  },
+  {
+    name: "mouse"
+  }
+]
+
+
+for(let i = 0; i<products.length; i++){
+  const currentProduct = products[i]
+  console.log(currentProduct);
+}
