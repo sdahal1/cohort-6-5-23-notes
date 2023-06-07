@@ -115,3 +115,6 @@ function calculateTax2(state){
 }
 
 console.log(calculateTax2("FL"))
+
+
+// console.log([1,4,8].includes(8))
