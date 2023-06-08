@@ -45,3 +45,5 @@ const combinedObjects = {...product, ...salesTax, tax: 0.5}
 console.log(combinedObjects)
 
 //THE SPREAD OPERATOR-> USE IT TO COMBINE TWO OBJECTS INTO ONE AND OVERWRITE ONE OF THE EXISTING KEYS 
+
+
