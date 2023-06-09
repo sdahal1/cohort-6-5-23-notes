@@ -185,23 +185,40 @@ function addCityToCities(team, cities={}) {
 }
 
 
-console.log(addCityToCities(newTeam, cities_usa))
-console.log(addCityToCities(newTeam2, cities_usa))
+// console.log(addCityToCities(newTeam, cities_usa))
+// console.log(addCityToCities(newTeam2, cities_usa))
 
 
 
 
 function calculateTotalChampionships(cities={}) {
+  let total = 0;
+  for(let cityNameKey in cities){
+    const {numberOfChampionships} = cities[cityNameKey]
+    // console.log("value is this", cities[cityNameKey]) //cities['los angeles']
+    total += numberOfChampionships
+  }
+  return total;
 }
 
 
+// console.log(calculateTotalChampionships(cities_usa))
 
 
 
+// const person = {
+//   name: "Rob",
+//   address: {
+//     street: "100 way",
+//     state: "CA"
+//   }
+// }
+// const x = "address"
+// console.log(person[x])
 /*
 
 1. Should return null if the cities is empty
-2. Should return a receipt of all items in the cart
+2. Should return a summary of all the cities in the cities object
 3. Example input:
 
 let cities_usa = {
@@ -226,8 +243,23 @@ let cities_usa = {
 
 */
 function printInfo(cities={}) {
-	
+	//check if the object is empty, if it is, return null
+
+
+  let result = ""
+  for(let key in cities){
+    // //log the key 
+    // console.log(key)
+    // //log the value at each key
+    // console.log(cities[key])
+    const value = cities[key]
+    result += `${key} has ${value.numberOfChampionships} championships and the following teams: ${value.teams.join(", ")}\n`
+  }
+  const total = calculateTotalChampionships(cities)
+  result += `Total Championships: ${total}`
+
+  return result;
 }
 
 
-// console.log(printInfo(cities_usa))
+console.log(printInfo(cities_usa))
