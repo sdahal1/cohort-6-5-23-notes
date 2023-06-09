@@ -246,7 +246,7 @@ function printInfo(cities={}) {
 	//check if the object is empty, if it is, return null
 
 
-  let result = ""
+  let result = "";
   for(let key in cities){
     // //log the key 
     // console.log(key)
