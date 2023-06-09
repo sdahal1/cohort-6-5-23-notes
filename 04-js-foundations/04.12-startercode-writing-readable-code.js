@@ -20,29 +20,21 @@ const authors = [
 
 /* 
 1. DONT REPEAT YOURSELF: THE ABOVE FUNCTION WORKS, HOWEVER WE CAN REFACTOR THE "authors[i]" TO BE MORE READABLE BY ASSIGNING IT TO A VARIABLE:
-
 */
 function getAllSeries(authors) {
   const result = [];
   for (let i = 0; i < authors.length; i++) {
-    for (let j = 0; j < authors[i].series.length; j++) {
-      result.push(authors[i].series[j]);
+    const author = authors[i]
+    for (let j = 0; j < author.series.length; j++) {
+      result.push(author.series[j]);
     }
   }
   return result;
 }
 
-getAllSeries(authors); // [ 'His Dark Materials', 'Sally Lockhart', 'Discworld', 'Long Earth' ]
+// console.log(getAllSeries(authors)); // [ 'His Dark Materials', 'Sally Lockhart', 'Discworld', 'Long Earth' ]
 
-/* 
-Solution for 1:
 
-const author = authors[i];
-for (let j = 0; j < author.series.length; j++) {
-  result.push(author.series[j]);
-}
-
-*/
 
 
 
@@ -52,41 +44,25 @@ for (let j = 0; j < author.series.length; j++) {
 2. RETURN EARLY- GUARD CLAUSE (WHAT IS IT AND WHEN TO USE IT?)
 */
 
-function getSeriesListById(authors, id) {
-  let selected = null;
-  for (let i = 0; i < authors.length; i++) {
-    const author = authors[i];
-    if (author.id === id) selected = author;
-  }
+function getSeriesListById(authors=[], id=0) {
+  if(!id || id===0) return "No ID Provided" //guard clause-> 
 
-  if (id) {
-    if (selected) {
-      const message = `Series list: ${selected.series.join(", ")}`;
-      return message;
-    } else {
-      return [];
-    }
-  } else {
-    return "No ID provided.";
-  }
-}
-
-/*
-SOLUTION FOR 2:
-
-function getSeriesListById(authors, id) {
-  if (!id) return "No ID provided.";
 
   let selected = null;
   for (let i = 0; i < authors.length; i++) {
     const author = authors[i];
     if (author.id === id) selected = author;
   }
-  if (!selected) return [];
 
-  return `Series list: ${selected.series.join(", ")}`;
+  if(selected === null) return []
+
+  const message = `Series list: ${selected.series.join(", ")}`;
+  return message;
+
 }
-*/
+
+// console.log(getSeriesListById(authors, 1))
+
 
 
 
@@ -95,19 +71,10 @@ function getSeriesListById(authors, id) {
 */
 
 function moreThanThreeAuthors(authors) {
-  if (authors.length > 3) {
-    return true;
-  } else {
-    return false;
-  }
+
+  return authors.length > 3
 }
 
 
-/* 
-SOLUTION FOR 3:
 
-function moreThanThreeAuthors(authors) {
-  return authors.length > 3;
-}
-
-*/
+console.log(moreThanThreeAuthors(authors))
