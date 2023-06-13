@@ -199,3 +199,5 @@ function isAnybodyFromGivenStateMakingOverGivenAmount(employees, stateName, amou
 
 
 console.log(isAnybodyFromGivenStateMakingOverGivenAmount(employees, "New York", 100000))
+
+
