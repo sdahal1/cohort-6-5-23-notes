@@ -91,6 +91,7 @@ function partitionCoursesByStudentProgress(courses) {
 
 }
 
+
 function partitionCoursesByStudentProgressAdvanced(courses) {
     //initialize array to store onpace courses
     const onPace = courses.filter((courseObj)=>{
@@ -241,7 +242,41 @@ let student1 = {
     }
 */
 
-function getTotalNumberOfClassesEnrolledIn(student, courses) {
+
+function getTotalNumberOfClassesEnrolledIn(student={}, courses=[]) {
+    //access at the given students id so we can use that id for searching the courses rosters
+    const {id} = student;
+
+    let count = 0;
+    courses.forEach((courseObj)=>{
+        const {roster} = courseObj;
+        roster.forEach((rosterObj)=>{
+            if(rosterObj.studentId === id){
+                count++;
+            }
+        })
+    })
+
+    return count;
+}
+
+function getTotalNumberOfClassesEnrolledInAdvanced(student={}, courses=[]) {
+    //access at the given students id so we can use that id for searching the courses rosters
+    const {id} = student;
+
+    let count = courses.reduce((accumulator, courseObj)=>{
+        const {roster} = courseObj;
+       
+        const found = roster.find((rosterObj)=>{
+            return rosterObj.studentId === id
+        })
+        if(found !== undefined){
+            accumulator ++;
+        }
+        return accumulator
+    },0)
+
+    return count;
 }
 
 let student1 = {
@@ -252,20 +287,78 @@ let student1 = {
     },
 };
 
-// console.log(getTotalNumberOfClassesEnrolledIn(student1, courses));
+// console.log(getTotalNumberOfClassesEnrolledInAdvanced(student1, courses));
 
 /* 
 10- Given a student object, an array of course objects and an array of authors objects-> give back all the course objects including the instructor information embedded into the course object for the courses the student is enrolled in
 
 
-
 */
 
-function getCoursesStudentEnrolledIn(student, courses, instructors) {
-    
+function getCoursesStudentEnrolledIn(student={}, courses=[], instructors=[]) {
+    const {id} = student;
+    const result = [];
+    //for each course in courses do:
+    courses.forEach((courseObj)=>{
+        const {roster} = courseObj;
+        roster.forEach((rosterObj)=>{
+            const {studentId} = rosterObj;
+            if(studentId === id){
+                //look for the courses instructor using the coures instructorId
+                const {instructorId} = courseObj;
+                let found = null;
+                instructors.forEach((instructorObj)=>{
+                    if(instructorObj.id === instructorId){
+                        found = instructorObj;
+                        //update the coureObj to have an "instructor" property with the value of an instructor element
+                        courseObj.instructor = found;
+                    }
+                })
+               
+                result.push(courseObj)
+            }
+        })
+    })
+    return result;
 }
 
-// console.log(getCoursesStudentEnrolledIn(student1, courses, instructors));
+
+function getCoursesStudentEnrolledInAdvanced(student={}, courses=[], instructors=[]) {
+    const {id} = student;
+    const result = courses.filter((courseObj)=>{
+        const {roster} = courseObj;
+        const isEnrolled = roster.some((rosterObj)=>{
+            const {studentId} = rosterObj;
+            return studentId === id
+        })
+        if(isEnrolled === true){
+            //look for the courses instructor using the coures instructorId
+            const {instructorId} = courseObj;
+    
+            const found = instructors.find((instructorObj)=>{
+                return instructorObj.id === instructorId
+            })
+            if(found !== undefined) courseObj.instructor = found;
+    
+            // result.push(courseObj)
+            return true
+        }else{
+            return false;
+        }
+    })
+    return result;
+}
+
+
+const student3 =  {
+    id: 3,
+    name: {
+        first: "Mickey",
+        last: "Mouse"
+    }
+}
+console.log(getCoursesStudentEnrolledInAdvanced(student3, courses, instructors));
+//[{1},{2},{4},{6}]
 
 /*
 11. Get count of courses who have at least on student not onPace- similar to getBooksBorrowedCount(books)

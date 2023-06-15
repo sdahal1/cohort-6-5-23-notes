@@ -138,7 +138,7 @@ const courses = [
                 onPace: false
             },
             {
-                studentId: 2,
+                studentId: 1,
                 onPace: true
             },
             {
