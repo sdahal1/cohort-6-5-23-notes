@@ -357,18 +357,39 @@ const student3 =  {
         last: "Mouse"
     }
 }
-console.log(getCoursesStudentEnrolledInAdvanced(student3, courses, instructors));
+// console.log(getCoursesStudentEnrolledInAdvanced(student3, courses, instructors));
 //[{1},{2},{4},{6}]
 
 /*
 11. Get count of courses who have at least on student not onPace- similar to getBooksBorrowedCount(books)
 */
 
-function getCoursesNotOnPaceCount(courses) {
-    
+function getCoursesNotOnPaceCount(courses=[]) {
+    let count = 0;
+    //forEach course in courses do:
+    courses.forEach((courseObj)=>{
+        const {roster} = courseObj;
+        let isCourseOnPace = true;
+        // roster.forEach((rosterObj)=>{
+        //     if(rosterObj.onPace === false){
+        //         isCourseOnPace = false;
+        //         //break; //break does not work in forEach way
+        //     }
+        // })
+        for(let rosterObj of roster){
+            if(rosterObj.onPace === false){
+                isCourseOnPace = false;
+                break;
+            }
+        }
+        if(isCourseOnPace === false){
+            count++;
+        }
+    })
+    return count;
 }
 
-// console.log(getCoursesNotOnPaceCount(courses));
+// console.log(getCoursesNotOnPaceCount(courses)); //4
 
 /* 
 12. Get most common course categories. Output in this format:
@@ -379,13 +400,49 @@ function getCoursesNotOnPaceCount(courses) {
     { name: "Psychology", count: 2 },
 ]
 
+result = []
+
+categoriesLookup = {
+    "software engineering": 3,
+    "psychology": 2,
+    "finance": 2
+}
+
 */
 
-const getMostCommonCategories = (courses) => {
+const getMostCommonCategories = (courses=[]) => {
+    const result = []
+    //we will put the categores in an object because: 
+    const categoriesLookup = {}
+
+    //for each course object in courses do:
+    courses.forEach((courseObj)=>{
+        const {category} = courseObj;
+        //look at the category and ask "does this categorey exist as a key(property) in the categoriesLookup object". If that categorey does not exist in the categoriesLookup object, then create a new key representing that category, and set value to be 1.
+        if(categoriesLookup[category] === undefined){
+            categoriesLookup[category] = 1;
+        }else{
+            //If the category already exists in the categoriesLookup object, then increment the value at that category by 1
+            categoriesLookup[category] += 1
+        }
+    })
+
+    // console.log(categoriesLookup)
+    //loop through the categoriesLookup object
+    for(let categoryKey in categoriesLookup){
+        let obj = { name: categoryKey, count: categoriesLookup[categoryKey] }
+        result.push(obj);
+    }
+
+    //sort the result array
+    result.sort((a,b)=>{
+        return b.count-a.count
+    })
     
+    return result.slice(0,2) //0,1
 };
 
-// console.log(getMostCommonCategories(courses));
+console.log(getMostCommonCategories(courses));
 
 /* 
 13. Get most popular courses- find the top 3 largest courses based on roster size
