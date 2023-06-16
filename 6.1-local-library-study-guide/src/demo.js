@@ -438,11 +438,11 @@ const getMostCommonCategories = (courses=[]) => {
     result.sort((a,b)=>{
         return b.count-a.count
     })
-    
+    //slice will give you a portion of an array from index 0 to index 2 (or whatever numbers you put there)
     return result.slice(0,2) //0,1
 };
 
-console.log(getMostCommonCategories(courses));
+// console.log(getMostCommonCategories(courses));
 
 /* 
 13. Get most popular courses- find the top 3 largest courses based on roster size
@@ -454,14 +454,48 @@ Output in this format:
   { name: 'Bread And Cheddar- The Fundamentals', rosterSize: 4 },
   { name: 'Python Fundamentals', rosterSize: 3 }
 ]
+
+
+result = [
+
+]
 */
 
-function getMostPopularCourses(courses) {
-    //find the most pop
+function getMostPopularCourses(courses=[]) {
+    //find the most popular courses based on roster size
 
+    const result = [];
+    //for each course element in courses, do:
+    courses.forEach((courseObj)=>{
+        const {name, roster} = courseObj;
+        const obj = { name: name, rosterSize: roster.length}
+        result.push(obj)
+    })
+
+    result.sort((elementA,elementB)=>{
+        return elementB.rosterSize - elementA.rosterSize
+    })
+    return result.slice(0,2)
 }
 
-// console.log(getMostPopularCourses(courses));
+function getMostPopularCoursesAdvanced(courses=[]) {
+    //find the most popular courses based on roster size
+
+    const result = courses.map(({name, roster})=>{
+        const obj = { name: name, rosterSize: roster.length}
+        return obj
+    })
+
+    result.sort((elementA,elementB)=>{
+        return elementB.rosterSize - elementA.rosterSize
+    })
+    return result.slice(0,2)
+
+    //single line way
+    //return courses.map(({name, roster})=> ({ name: name, rosterSize: roster.length})).sort((elementA,elementB)=> elementB.rosterSize - elementA.rosterSize).slice(0,2)
+}
+
+// console.log(getMostPopularCoursesAdvanced(courses));
 
 /* 
 
@@ -474,15 +508,35 @@ Output in this format:
   { name: 'Wayne Dyer', numStudents: 4 }
 ]
 
+[
+
+]
+
 */
 
-function instructorsOfLargestClasses(courses, instructors) {
-   
+function instructorsOfLargestClasses(courses=[], instructors=[]) {
+   //find the most popular courses based on roster size first
+   courses.sort((courseA, courseB)=>{
+    return courseB.roster.length - courseA.roster.length;
+   }) 
+   //top 2 courses 
+   const top2Courses = courses.slice(0,2);
+
+   const result = [];
+   top2Courses.forEach((courseObj)=>{
+    const {instructorId,roster} = courseObj;
+    //find the instructor information based on the instructorId
+    const foundInstructor = instructors.find((instructorObj)=> instructorObj.id === instructorId)
+
+    const obj =  { name: nameHelper(foundInstructor), numStudents: roster.length }
+    result.push(obj)
+   })
+   return result;
 }
 
-function helperJoinFirstAndLastNames(first, last) {
-    return `${first} ${last}`;
+function nameHelper(instructor={}) {
+    return `${instructor.name.first} ${instructor.name.last}`
 }
 
-// console.log(instructorsOfLargestClasses(courses, instructors));
+console.log(instructorsOfLargestClasses(courses, instructors));
 
