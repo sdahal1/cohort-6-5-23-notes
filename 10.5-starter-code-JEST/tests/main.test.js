@@ -1,7 +1,6 @@
 //import the function we want to test here
 const {getLowRatedArtists,getAverageRating,findArtistByName, partitionArtistsByRating, assignGrade} = require("../src/main")
-//import the assertion library chai -> chai lets us make assertions (to compare our actual function outputs with expected outputs)
-const expect = require("chai").expect;
+
 
 const artists = [
   { name: "Taylor Swift", rating: 9 },
@@ -24,21 +23,21 @@ describe("getAverageRating()",()=>{
     const actual = getAverageRating(artists); //test the actual function and store its actual output
 
     //assert that the expected and actual are the same (chai)
-    expect(actual).to.equal(expected)
+    expect(actual).toEqual(expected)
   })
 
   //edge case - should return null if the dataset is empty
   it("should return null if the dataset is empty", ()=>{
     const expected = null;
     const actual = getAverageRating([])
-    expect(actual).to.equal(expected)
+    expect(actual).toEqual(expected)
   })
 
   //it should return a number not a string
   it("it should return a number not a string", ()=>{
     const actual = getAverageRating(artists)
     //asserting that the output of a function has to be a certain datatype
-    expect(actual).to.be.a("number") //number, string, boolean, array, object
+    expect(typeof actual).toEqual("number") //number, string, boolean, array, object
   })
 })
 
@@ -50,15 +49,14 @@ describe("findArtistByName()", ()=>{
     const expected = { name: "Drake", rating: 9.8 };
 
     // expect(actual).to.eql(expected)
-    expect(actual).to.eql(expected)
+    expect(actual).toEqual(expected)
   })
 
   it("it should give back the null if no artist was found", ()=>{
     const actual = findArtistByName(artists, "Baby Keem");
     
-    // expect(actual).to.equal(null)
-    // expect(actual).to.be.a("null")
-    expect(actual).to.be.null;
+   
+    expect(actual).toEqual(null)
   })
 })
 
@@ -73,14 +71,14 @@ describe("getLowRatedArtists()",()=>{
       }
     ]
 
-    expect(actual).to.eql(expected)
+    expect(actual).toEqual(expected)
   })
 
   it("should return null if array is empty", ()=>{
     const actual = getLowRatedArtists([], 7);
     const expected = null
 
-    expect(actual).to.be.null;
+    expect(actual).toEqual(null)
   })
 })
 
@@ -106,7 +104,7 @@ describe("partitionArtistsByRating()",()=>{
       ]
     ]
 
-    expect(actual).to.eql(expected)
+    expect(actual).toEqual(expected)
   })
 })
 
@@ -117,20 +115,20 @@ describe("assignGrade()",()=>{
     const actual = assignGrade(0.82);
     const expected = "B"
 
-    expect(actual).to.equal(expected)
+    expect(actual).toEqual(expected)
   })
 
   it("should return the correct grade based on score", ()=>{
     const actual = assignGrade(0.92);
     const expected = "A"
 
-    expect(actual).to.equal(expected)
+    expect(actual).toEqual(expected)
   })
 
   it("should return the correct grade based on score", ()=>{
     const actual = assignGrade(0.72);
     const expected = "C"
 
-    expect(actual).to.equal(expected)
+    expect(actual).toEqual(expected)
   })
 })
