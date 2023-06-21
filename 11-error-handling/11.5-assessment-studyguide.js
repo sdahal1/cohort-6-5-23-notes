@@ -1,18 +1,20 @@
-const locations = {
-    40.35: {
-        "-105.81": "ROCKY-MOUNTAINS",
-        22.54: "KATERINI-GREECE",
-    },
-    28.66: {
-        "-105.81": "CHIHUAHUA-MEXICO",
-    }
-};
+// const locations = {
+//     40.35: {
+//         "-105.81": "ROCKY-MOUNTAINS",
+//         22.54: "KATERINI-GREECE",
+//     },
+//     28.66: {
+//         "-105.81": "CHIHUAHUA-MEXICO",
+//     }
+// };
 
 function goToSecretLocation(lat, lon, passcode) { //28.66, -105.81, Obi-wan-kanobie
     // console.log(lat);
     if (!lat || !lon || !passcode) {
+        console.log(passcode[0])
         throw "latitude, longitude, and passcode are required!";
     }
+
     let result;
     try {
         // console.log(locations[lat]);
@@ -39,10 +41,50 @@ function goToSecretLocation(lat, lon, passcode) { //28.66, -105.81, Obi-wan-kano
     return result;
 }
 
-// console.log(goToSecretLocation());
+
+
+
+// console.log(goToSecretLocation(5,8));
 // console.log(goToSecretLocation("0", 22.54, "ROCKY-MOUNTAINS"));
 // console.log(goToSecretLocation(28.66, "-105.81", "CHIHUAHUA-MEXICO"));
 // console.log(goToSecretLocation(28.66, "-105.81", "Obie One Kanobie"));
 
 
 
+
+
+const locations = {
+    "40.35": {
+      "-105.81": "ROCKY-MOUNTAINS",
+      "22.54": "KATERINI-GREECE"
+    },
+    "28.66": {
+      "-105.81": "CHIHUAHUA-MEXICO"
+    }
+  };
+  
+  function goToSecretLocation(lat, lon, passcode) {
+    if (!lat || !lon || !passcode) {
+      throw "latitude, longitude, and passcode are required!";
+    }
+  
+    let result;
+    try {
+      if (locations[lat][lon] === passcode) {
+        result = "Welcome.";
+      } else {
+        throw "Nothing to see here!";
+      }
+    } catch (error) {
+        
+      if (typeof error === "string") {
+        result = error;
+      } else {
+        result = "You look around and don't see a thing.";
+      }
+    }
+  
+    return result;
+  }
+
+console.log(goToSecretLocation(40.35, 22.54, "Miami"))
