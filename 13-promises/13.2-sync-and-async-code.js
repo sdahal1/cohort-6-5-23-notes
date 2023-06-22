@@ -87,9 +87,9 @@ function process(videoFile) {
 
 const url = "https://www.thinkful.com/sync-and-async.mov"; //["https:","www.thinkful.com",  "sync-and-async.mov"]
 
-// const fileName = download(url);
-// console.log("filename is this", fileName)
-// process(fileName);
+const fileName = download(url);
+console.log("filename is this", fileName)
+process(fileName);
 
 
 // setInterval(() => console.log("some other work is happening here"), 1000);
