@@ -1,3 +1,5 @@
+const { resolve } = require("path");
+
 //What will be logged?
 function one(){
   let fortune = null;
@@ -25,8 +27,18 @@ function two(){
 //What will be the state of the promise below after 1,000 milliseconds?
 function three(){
   const promise = new Promise((resolve, reject) => {
-    console.log('Completed!');
+    resolve('Completed!');
+    // reject([3,6,9])
   });
 
-  console.log(promise)
+  // promise
+  // .then((resolvedData)=>{
+  //   console.log(resolvedData)
+  // })
+  // .catch((err)=>{
+  //   console.log(err)
+  // })
+  
 }
+
+three()
