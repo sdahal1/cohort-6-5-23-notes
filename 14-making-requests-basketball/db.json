@@ -1,11 +1,11 @@
 {
   "players": [
     {
-      "id": "1",
-      "name": "Lebron James",
+      "name": "GOAT James",
       "team": "Lakers",
       "number_championships": 4,
-      "state": "California"
+      "state": "California",
+      "id": "1"
     },
     {
       "id": "2",
@@ -13,13 +13,6 @@
       "team": "Warriors",
       "number_championships": 4,
       "state": "California"
-    },
-    {
-      "id": "3",
-      "name": "Allen Iverson",
-      "team": "Sixers",
-      "number_championships": 0,
-      "state": "Pennsylvania"
     },
     {
       "id": "4",
@@ -48,6 +41,20 @@
       "team": "Bulls",
       "number_championships": 6,
       "state": "Illinois"
+    },
+    {
+      "name": "Joseph",
+      "team": "Toon Squad",
+      "number_championships": 5,
+      "state": "Texas",
+      "id": "m8GG2LM"
+    },
+    {
+      "name": "Alex",
+      "team": "Toon Squad",
+      "number_championships": 5,
+      "state": "Texas",
+      "id": "vQKkxay"
     }
   ]
 }
