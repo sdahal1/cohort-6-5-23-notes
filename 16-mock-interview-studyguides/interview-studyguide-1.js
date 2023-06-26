@@ -99,7 +99,8 @@ function getCoinMarketData(coinName){
 }
 
 
-getCoinMarketData("ethereum")
+// getCoinMarketData("ethereum")
+
 
 /* 
 TOP WAYS STUDENTS FAIL THE MOCK INTERVIEW FIRST TIME:
