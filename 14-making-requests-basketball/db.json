@@ -55,6 +55,13 @@
       "number_championships": 5,
       "state": "Texas",
       "id": "vQKkxay"
+    },
+    {
+      "name": "Lebron James",
+      "team": "Lakers",
+      "number_championships": 4,
+      "state": "California",
+      "id": "KbHyJFM"
     }
   ]
 }

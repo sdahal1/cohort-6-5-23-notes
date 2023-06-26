@@ -98,6 +98,27 @@ function getCoinMarketData(coinName){
 
 }
 
+async function getCoinMarketData(coinName){
+  const url = `https://api.coingecko.com/api/v3/coins/${coinName}`
+  try{
+    const response = await axios.get(url)
+    console.log(response.data.market_data)
+    return response.data.market_data
+  }catch(err){
+    return err.message
+  }
+  // return axios.get(url)
+  //   .then((response)=>{
+  //     console.log(response.data.market_data)
+  //     return response.data.market_data
+  //   })
+  //   .catch((err)=>{
+  //     return err.message
+  //   })
+
+}
+
+
 
 // getCoinMarketData("ethereum")
 
