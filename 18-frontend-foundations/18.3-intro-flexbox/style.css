@@ -1,0 +1,26 @@
+section {
+  background-color: gray;
+  /* padding: 10px; */
+}
+
+.first{
+  color: red;
+}
+
+.group {
+  border: 1px solid black;
+  background-color: aqua;
+  /* padding: 10px; */
+  display: flex;
+}
+
+.item {
+  border: 1px solid black;
+  background-color: chocolate;
+  /* padding: 20px;
+  margin: 20px; */
+}
+
+a{
+  font-size: 50px;
+}
