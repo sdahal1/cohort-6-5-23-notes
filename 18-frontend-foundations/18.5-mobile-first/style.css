@@ -1,0 +1,58 @@
+main {
+  margin-top: 60px;
+}
+
+main h1 {
+  margin: 0 10px;
+  text-align: center;
+  font-family: "Amatic SC", cursive;
+  font-size: 65px;
+}
+
+main h2 {
+  margin: 18px 0 12px 0;
+  border-bottom: 1px solid #5c4f41;
+  font-family: "Special Elite", cursive;
+  font-size: 24px;
+}
+
+main h3 {
+  margin: 18px 0 12px 0;
+  border-bottom: 1px solid #5c4f41;
+  font-family: "Special Elite", cursive;
+  font-size: 18px;
+}
+
+main p {
+  font-family: "Roboto", sans-serif;
+  margin-top: 0;
+}
+
+img{
+  width: 100%;
+}
+
+@media all and (min-width:800px){
+  .row{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .left-col{
+    flex: 1;
+  }
+
+  .right-col{
+    flex: 2;
+  }
+
+  .brown{
+    background-color: rgb(194, 97, 61);
+    /* padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px; */
+    padding: 10px 25px;
+  }
+}

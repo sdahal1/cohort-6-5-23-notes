@@ -4,7 +4,7 @@ section {
 }
 
 .first{
-  color: red;
+  /* color: red; */
 }
 
 .group {
@@ -12,6 +12,8 @@ section {
   background-color: aqua;
   /* padding: 10px; */
   display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .item {
@@ -19,8 +21,27 @@ section {
   background-color: chocolate;
   /* padding: 20px;
   margin: 20px; */
+  /* width: 100%; */
+  flex: 1;
+}
+
+.item-double{
+  flex: 2;
+  /* margin-right: 100px; */
 }
 
 a{
   font-size: 50px;
+}
+
+h2{
+  font-size: 20;
+}
+
+
+/* if the device width is less than or equal to 750px  apply this code below as well*/
+@media all and (max-width: 750px){
+  .group {
+    flex-direction: column;
+  }
 }
