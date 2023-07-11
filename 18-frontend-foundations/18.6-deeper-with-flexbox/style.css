@@ -1,0 +1,40 @@
+.group{
+  background-color: rgb(181, 211, 217);
+  border: 2px solid black;
+  /* how  would i create cushion inside this container?*/
+  padding: 10px;
+  /* how would i make this a flex container? */
+  display: flex;
+
+  /* flex-direction: row; */
+  /* flex-direction: column; */
+  margin-bottom: 20px;
+}
+
+/* 
+If flex direction is row -> main axis is X axis, cross axis is Y axis
+If flex direction is column -> main axis is Y axis, cross axis is X axis
+
+*/
+
+.group2{
+  flex-direction: column;
+  height: 500px;
+  /* justify-content -> determine the layout of the flex items along the main axis */
+  /* justify-content: flex-start; */
+  /* justify-content: flex-end; */
+  /* justify-content: center; */
+  justify-content: space-between;
+  /* justify-content: space-around; */
+  /* justify-content: space-evenly; */
+  /* align-items: stretch; */
+  /* align-items: flex-start; */
+  align-items: center;
+
+}
+
+.item{
+  border: 2px solid red;
+}
+
+
